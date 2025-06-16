@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_zk_machine_form" model="ir.ui.view">
+        <field name="name">zk.machine.form</field>
+        <field name="model">zk.machine</field>
+        <field name="arch" type="xml">
+            <form string="Biometric Device">
+                <header>
+<!--                    <button name="clear_attendance" type="object" string="Clear Data" class="oe_highlight"-->
+<!--                                icon="fa-remove " confirm="Are you sure you want to do this?"/>-->
+
+                    <button name="download_users" type="object" string="Downl Users" class="oe_highlight"
+                            icon="fa-download " confirm="Are you sure you want to do this?" />
+                    <button name="download_attendance" type="object" string="Downl Atte. Data" class="oe_highlight"
+                            icon="fa-download " confirm="Are you sure you want to do this?" />
+                    <button name="upload_users" type="object" string="Upl Users" class="oe_highlight"
+                            icon="fa-upload " confirm="Are you sure you want to do this?" />
+                    <button name="set_time" type="object" string="Set Time" class="oe_highlight"
+                            icon="fa-clock-o" confirm="Are you sure you want to do this?" />    
+                    <button name="get_time" type="object" string="Get Time" class="oe_highlight"
+                            icon="fa-clock-o" confirm="Are you sure you want to do this?" />    
+                    <button name="unlock_door" type="object" string="Open Door" class="oe_highlight"
+                            icon="fa fa-cogs" confirm="Are you sure you want to do this?" />
+
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" placeholder="Machine IP"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="ip"/>
+                            <field name="port_no"/>
+                            <field name="address_id"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Users">
+                            <field name="user_ids" >
+                                <tree string="Users" editable="bottom" create="false" delete="true">
+                                    <field name="partner_id"/>
+                                    <field name="user_id"/>
+                                    <field name="partner_mach_user_id" string='Partner Machine Id'/>
+                                    <field name="user_name"/>
+                                    <field name="user_password" />
+                                    <field name="user_privilege" />
+                                    <field name="user_is_enable" />
+                                    <field name="member_card_number" string='Card'/>               
+                                    <field name="membership_status"/>
+                                    <field name="machine_user_id" string='Alt Partner Machine Id'/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Attendance Logs">
+                            <field name="attendance_ids" >
+                                <tree string="Attendances" editable="bottom" create="false" delete="true">
+                                        <field name="user_id" />
+                                        <field name="punch_type" />
+                                        <field name="attendance_type" />
+                                        <field name="punching_time" />
+                                    </tree>
+                            </field>>
+                        </page>
+                    </notebook>
+
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_zk_machine_tree" model="ir.ui.view">
+        <field name="name">zk.machine.tree</field>
+        <field name="model">zk.machine</field>
+        <field name="arch" type="xml">
+            <tree string="Biometric Machine">
+                <field name="name"/>
+                <field name="ip"/>
+                <field name="port_no"/>
+                <field name="address_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+     <record id="view_zk_machine_search" model="ir.ui.view">
+        <field name="name">zk.machine.search</field>
+        <field name="model">zk.machine</field>
+        <field name="arch" type="xml">
+            <search>
+               <field name="name"/>
+                <field name="ip"/>
+                <field name="port_no"/>
+                <field name="address_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_zk_machine_user_tree" model="ir.ui.view">
+        <field name="name">zk.machine.user.tree</field>
+        <field name="model">zk.machine.user</field>
+        <field name="arch" type="xml">
+            <tree string="Machine User">
+                <field name="user_id"/>
+                <field name="partner_id"/>
+                <field name="partner_mach_user_id" string='Partner Machine Id'/>
+                <field name="user_name"/>
+                <field name="machine_id"/>
+                <field name="user_privilege" />
+                <field name="user_is_enable" />
+                <field name="member_card_number" string='Card'/>
+                <field name="membership_status" />
+                <field name="machine_user_id" string='Alt Partner Machine Id'/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_zk_machine_user_form" model="ir.ui.view">
+        <field name="name">zk.machine.user.form</field>
+        <field name="model">zk.machine.user</field>
+        <field name="arch" type="xml">
+            <form string="Machine User">
+                <sheet>
+                    <group>
+                        <field name="user_id"/>
+                        <field name="partner_id"/>
+                        <field name="partner_mach_user_id" string='Partner Machine Id'/>
+                        <field name="machine_id"/>
+                        <field name="user_privilege" />
+                        <field name="user_is_enable" />
+                        <field name="member_card_number" />
+                        <field name="membership_status" />
+                        <field name="machine_user_id" string='Alt Partner Machine Id'/>
+                    </group>
+                </sheet>>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_zk_machine_user_search" model="ir.ui.view">
+        <field name="name">zk.machine.user.search</field>
+        <field name="model">zk.machine.user</field>
+        <field name="arch" type="xml">
+            <search>
+               <field name="user_id"/>
+                <field name="partner_id"/>
+                <field name="partner_mach_user_id" string='Partner Machine Id'/>
+                <field name="machine_id"/>
+                <field name="user_privilege" />
+                <field name="user_is_enable" />
+                <field name="member_card_number" />
+                <field name="membership_status" />
+                <field name="machine_user_id" string='Alt Partner Machine Id'/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_zk_machine_attendance_tree" model="ir.ui.view">
+        <field name="name">zk.machine.attendance.tree</field>
+        <field name="model">zk.machine.attendance</field>
+        <field name="arch" type="xml">
+            <tree string="Machine Attendance">
+                <field name="machine_id"/>
+                <field name="user_id"/>
+                <field name="partner_mach_user_id" string='Partner Machine Id'/>
+                <field name="punch_type" />
+                <field name="attendance_type" />
+                <field name="punching_time" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_zk_machine_attendance_form" model="ir.ui.view">
+        <field name="name">zk.machine.attendance.form</field>
+        <field name="model">zk.machine.attendance</field>
+        <field name="arch" type="xml">
+            <form string="Machine User">
+                <sheet>
+                    <group>
+                        <field name="machine_id"/>
+                        <field name="user_id"/>
+                        <field name="partner_mach_user_id" string='Partner Machine Id'/>
+                        <field name="punch_type" />
+                        <field name="attendance_type" />
+                        <field name="punching_time" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_zk_machine_attendance_search" model="ir.ui.view">
+        <field name="name">zk.machine.attendance.search</field>
+        <field name="model">zk.machine.attendance</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="user_id"/>
+                <field name="partner_mach_user_id" string='Partner Machine Id'/>
+                <field name="machine_id"/>
+                <field name="punch_type" />
+                <field name="attendance_type" />
+                <field name="punching_time" />
+            </search>
+        </field>
+    </record>
+
+
+    <record id="zk_machine_action" model="ir.actions.act_window">
+        <field name="name">Devices</field>
+        <field name="res_model">zk.machine</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="zk_machine_user_action" model="ir.actions.act_window">
+        <field name="name">Machine Users</field>
+        <field name="res_model">zk.machine.user</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="zk_machine_attendance_action" model="ir.actions.act_window">
+        <field name="name">Machine Attendance</field>
+        <field name="res_model">zk.machine.attendance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.server" id="action_update_time">
+       <field name="name">Update Biometric Time</field>
+       <field name="model_id" ref="model_zk_machine"/>
+       <field name="binding_model_id" ref="model_zk_machine"/>
+        <field name="binding_view_types">form</field>
+       <field name="state">code</field>
+       <field name="code">action = records.set_time()</field>
+   </record>
+
+    <record id="zk_membership_action" model="ir.actions.act_window">
+        <field name="name">Membership Lines</field>
+        <field name="res_model">membership.membership_line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_zk_membership_line_tree" model="ir.ui.view">
+        <field name="name">zk.membership.membership.line.tree</field>
+        <field name="model">membership.membership_line</field>
+        <field name="arch" type="xml">
+            <tree string="Membership Line">
+                <field name="partner"/>
+                <field name="date"/>
+                <field name="membership_id"/>                
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="member_price"/>
+                <field name="state"/>
+                <field name="account_invoice_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_zk_membership_line_form" model="ir.ui.view">
+        <field name="name">zk.membership.membership.line.form</field>
+        <field name="model">membership.membership_line</field>
+        <field name="arch" type="xml">
+            <form string="Membership Line">
+             <sheet>
+                <group>
+                    <field name="partner" readonly="True"/>
+                    <field name="date" readonly="True"/>
+                    <field name="membership_id" readonly="True"/>                
+                    <field name="date_from" readonly="False" force_save="1"/>
+                    <field name="date_to" readonly="False" force_save="1"/>
+                    <field name="member_price" readonly="True"/>
+                    <field name="state"/>
+                    <field name="account_invoice_id" readonly="True"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record> 
+
+    <menuitem id="zk_machine_menu" parent="gym_mgmt_system.equipment_menu_configuration_root" sequence="50" name="Biometric Manager" groups="group_gym_manager"/>
+    <menuitem id="zk_machine_sub_menu" parent="zk_machine_menu"  name="Device Configuration" action="zk_machine_action" sequence="1"/>
+    <menuitem id="zk_machine_user_sub_menu" parent="zk_machine_menu"  name="Machine Users" action="zk_machine_user_action" sequence="1"/>
+    <menuitem id="zk_machine_attendance_sub_menu" parent="zk_machine_menu"  name="Machine Attendance" action="zk_machine_attendance_action" sequence="1"/>
+    <menuitem id="zk_membership_sub_menu" parent="zk_machine_menu"  name="Membership Lines" action="zk_membership_action" sequence="1"/>
+       
+    
+</odoo>

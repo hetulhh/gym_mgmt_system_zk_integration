@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<odoo>
+    
+<!-- Form view for member -->
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit.gym.mgmt.system.zk</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="mode">extension</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='is_gym_member']" position="after">
+                <field name="is_member_card_created" invisible="1"/>
+                <field name="member_card" readonly="is_member_card_created"/>
+                <field name="machine_user_id" readonly="1"/>
+            </xpath>
+            <xpath expr="//page[@name='membership']" position="after">
+                 <page string="Device">
+                            <field name="machine_user_ids" nolabel="1" readonly="1">
+                                <tree string="Users">
+                                    <field name="partner_id"/>
+                                    <!-- <field name="user_id"/>   -->
+                                    <field name="machine_id"/>                                                                      
+                                    <field name="user_name"/>
+                                    <field name="user_password" />
+                                    <!-- <field name="user_privilege" /> -->
+                                    <field name="user_is_enable" />
+                                    <!-- <field name="card_number" />    -->
+                                    <field name="member_card_number" string='Card'/>               
+                                    <field name="membership_status"/>               
+                                </tree>
+                            </field>
+                    </page>
+                <page string="Device Attendance ">
+                            <field name="machine_attendance_ids" nolabel="1" readonly="1">
+                                <tree string="Attendances">
+                                    <field name="machine_id"/>
+                                    <field name="punch_type"/>
+                                    <field name="attendance_type" />
+                                    <field name="punching_time"/>
+                                </tree>
+                            </field>
+                    </page>
+            </xpath>            
+        </field>
+    </record>    
+
+    <!-- Form view for member -->
+    <record id="view_partner_tree" model="ir.ui.view">
+        <field name="name">res.partner.view.tree.inherit.gym.mgmt.system.zk</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="mode">extension</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='city']" position="attributes">
+                    <attribute name="column_invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='state_id']" position="attributes">
+                    <attribute name="column_invisible">1</attribute>
+            </xpath>
+           <xpath expr="//field[@name='country_id']" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='activity_ids']" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='membership_state']" position="attributes">
+                <attribute name="column_invisible">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='membership_state']" position="after">
+                <field name="membership_start"/>
+                <field name="membership_stop"/>
+                <field name="member_card" readonly="1"/>
+                <field name="machine_user_id" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="view_res_partner_filter_extended" model="ir.ui.view">
+        <field name="name">res.partner.select.inherit.gym.mgmt.system.zk</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+             <xpath expr="//field[@name='user_id']" position="after">
+                <field name="member_card"/>
+             </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.server" id="action_upload_member">
+       <field name="name">Upload to Biometric Device</field>
+       <field name="model_id" ref="base.model_res_partner"/>
+       <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_view_types">form,list</field>
+       <field name="state">code</field>
+       <field name="code">action = records.action_open_upload_wizard()</field>
+   </record>
+
+    <record model="ir.actions.server" id="action_disable_member">
+       <field name="name">Disable User on Biometric Device</field>
+       <field name="model_id" ref="base.model_res_partner"/>
+       <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="binding_view_types">form,list</field>
+       <field name="state">code</field>
+       <field name="code">action = records.action_open_disable_wizard()</field>
+   </record>
+
+<!--    <record model="ir.actions.server" id="action_enable_member">-->
+<!--       <field name="name">Enable User on Biometric Device</field>-->
+<!--       <field name="model_id" ref="base.model_res_partner"/>-->
+<!--       <field name="binding_model_id" ref="base.model_res_partner"/>-->
+<!--        <field name="binding_view_types">form</field>-->
+<!--       <field name="state">code</field>-->
+<!--       <field name="code">action = records.action_enable_member()</field>-->
+<!--   </record>-->
+
+<!--   <record model="ir.actions.server" id="action_membership_state">-->
+<!--       <field name="name">Check member State</field>-->
+<!--       <field name="model_id" ref="base.model_res_partner"/>-->
+<!--       <field name="binding_model_id" ref="base.model_res_partner"/>-->
+<!--        <field name="binding_view_types">form</field>-->
+<!--       <field name="state">code</field>-->
+<!--       <field name="code">action = records.action_membership_state()</field>-->
+<!--   </record>-->
+
+  
+</odoo>

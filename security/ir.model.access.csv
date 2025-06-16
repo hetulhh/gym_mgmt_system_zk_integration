@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_zk_machine,access.zk.machine,model_zk_machine,gym_mgmt_system.group_gym_trainer,1,1,1,1
+access_zk_machine_user,access.zk.machine.user,model_zk_machine_user,gym_mgmt_system.group_gym_trainer,1,1,1,1
+access_zk_machine_attendance,access.zk.machine.attendance,model_zk_machine_attendance,gym_mgmt_system.group_gym_trainer,1,1,1,1
+access_device_selection_,access.device.selection,model_device_selection,gym_mgmt_system.group_gym_trainer,1,1,1,1

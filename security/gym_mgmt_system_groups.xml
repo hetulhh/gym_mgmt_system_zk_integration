@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--The security for the gym_mgmt_system-->
+    <record id="group_gym_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="gym_mgmt_system.module_category_gym_operator"/>
+        <field name="implied_ids" eval="[(4, ref('gym_mgmt_system.group_gym_operator'))]"/>
+    </record>
+</odoo>

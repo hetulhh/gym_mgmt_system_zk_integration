@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="device_selection_wizard_upload_form_view" model="ir.ui.view">
+            <field name="name">device.selection.form</field>
+            <field name="model">device.selection</field>
+            <field name="arch" type="xml">
+                <form string="Device Selection">
+                    <group>
+                        <field name="machine_id"/>   
+                    </group>
+                    <footer>
+                        <button name="action_wizard_upload_member" string="Confirm" type="object"/>
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="device_selection_wizard_disable_form_view" model="ir.ui.view">
+            <field name="name">device.selection.form</field>
+            <field name="model">device.selection</field>
+            <field name="arch" type="xml">
+                <form string="Device Selection">
+                    <group>
+                        <field name="machine_id"/>   
+                    </group>
+                    <footer>
+                        <button name="action_wizard_disable_member" string="Confirm" type="object"/>
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+<!--         <record id="device_selection_wizard_enable_form_view" model="ir.ui.view">-->
+<!--            <field name="name">device.selection.form</field>-->
+<!--            <field name="model">device.selection</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Device Selection">-->
+<!--                    <group>-->
+<!--                        <field name="machine_id"/>  -->
+<!--                    </group>-->
+<!--                    <footer>-->
+<!--                        <button name="action_wizard_enable_member" string="Confirm" type="object"/>-->
+<!--                        <button string="Cancel" class="oe_link" special="cancel"/>-->
+<!--                    </footer>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+</odoo>

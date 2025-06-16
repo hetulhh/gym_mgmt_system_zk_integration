@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_zk" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.gym.mgmt.system.zk</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+             <xpath expr="//field[@name='product_template_id']" position="after">
+<!--                <field name="is_gym_product" column_invisible="1"/>-->
+                <field name="membership_date_from" groups="gym_mgmt_system.group_gym_operator"/>
+                <field name="membership_date_to" groups="gym_mgmt_system.group_gym_operator"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
